@@ -37,7 +37,7 @@ DB_HOSTNAME=${DB_HOSTNAME:-$DB_PORT_3306_TCP_ADDR}
 DB_DATABASE=${DB_DATABASE:-$DB_ENV_MYSQL_DATABASE}
 DB_USER=${DB_USER:-$DB_ENV_MYSQL_USER}
 DB_PASSWORD=${DB_PASSWORD:-$DB_ENV_MYSQL_PASSWORD}
-
+prefixe=${DB_PREFIX:-$wp_}
 
 
 # ===============================================================================
@@ -91,7 +91,8 @@ s/localhost/$DB_HOSTNAME/
 /'AUTH_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/
 /'SECURE_AUTH_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/
 /'LOGGED_IN_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/
-/'NONCE_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/" \
+/'NONCE_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/
+/'table_prefix'/s/wp_/$prefixe" \
 /usr/share/nginx/www/wp-config-sample.php > /usr/share/nginx/www/wp-config.php
 
 # Change `user:group` for `wp-config.php`.
